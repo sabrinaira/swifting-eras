@@ -38,9 +38,11 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
+# Dependencies & directories
 node_modules
 jspm_packages
+# ignores your .env file
+.env
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -157,3 +159,5 @@ __MACOSX
 
 #personal
 PROGRESS.md
+frontend/public/main.js.LICENSE.txt
+/frontend/public/main.js
