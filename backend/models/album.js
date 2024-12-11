@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const albumSchema = new mongoose.Schema({
+const albumSchema = new Schema({
   albumTitle: { type: String, required: true },
   year: { type: Number, required: true },
   numberOfSongs: { type: Number, required: true },

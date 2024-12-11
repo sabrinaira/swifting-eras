@@ -1,34 +1,35 @@
 /** This file is the main router of the application responses to client requests*/
 
 // import dependencies
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: './.env' });
 const express = require('express');
 const path = require('path');
-const app = express();
 const mongoose = require('mongoose');
 
+const app = express();
+const PORT = 3000;
+
 //import routers & controllers
-const AlbumController = require('./controllers/albumController');
 const albumRoutes = require('./routes/albumRoutes');
+const songRoutes = require('./routes/songRoutes');
 
 // initialize middleware for handling JSON and request parsing
 app.use(express.json());
 
+// connect mongoose to cloud database
+const MONGO_URI = process.env.MONGO_URI;
+// console.log(MONGO_URI);
+
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('Connected to MongoDB'))
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB successfully! '))
   .catch((err) => console.log(`MongoDB Connection Error: ${err}`));
 
 app.use('/albums', albumRoutes);
 app.use('/songs', songRoutes);
 
-// insert error handlers
-
 /** 404 Handler */
-app.use('*', (res, req) => {
+app.use('*', (req, res) => {
   return res.status(404).send('404 - Request Not Found');
 });
 
@@ -46,4 +47,8 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message); // Response for the client
 });
 
-//insert server configs for start server
+/** Connecting to server */
+app.listen(PORT, (err) => {
+  if (err) console.log('Error in server setup');
+  console.log('Server listening on Port', PORT);
+});

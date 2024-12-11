@@ -6,10 +6,24 @@ const AlbumController = require('../controllers/albumController');
 // set up router
 const albumRouter = express.Router();
 
-/** CRUD Operations! */
-albumRouter.post('/', AlbumController.addAlbum, (res, req) => {});
-albumRouter.get('/', AlbumController.getAlbum, (res, req) => {});
-albumRouter.patch('/:id', AlbumController.updateAlbum, (res, req) => {});
-albumRouter.delete('/', AlbumController.deleteAlbum, (res, req) => {});
+albumRouter.post('/', AlbumController.addAlbum, (req, res) => {
+  return res
+    .status(200)
+    .send(`TS Album added successfully: ${res.locals.newAlbum}`);
+});
+
+albumRouter.get('/:albumName', AlbumController.getAlbum, (req, res) => {
+  return res
+    .status(200)
+    .send(`TS Album found: ${res.locals.foundAlbum}`);
+});
+
+albumRouter.patch('/:albumName', AlbumController.updateAlbum, (req, res) => {
+  return res.status(200).send(`TS Album updated: ${res.locals.updateAlbum}`);
+});
+
+albumRouter.delete('/:albumName', AlbumController.deleteAlbum, (req, res) => {
+  return res.status(200).json('Album deleted successfully.');
+});
 
 module.exports = albumRouter;
