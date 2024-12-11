@@ -1,7 +1,7 @@
 /** Handle song routing logic */
 
-const express = require('express');
-const SongController = require('../controllers/songController');
+import express from 'express';
+import SongController from '../controllers/songController.js';
 
 const songRouter = express.Router();
 
@@ -25,4 +25,4 @@ songRouter.delete('/:id', SongController.deleteSong, (req, res) => {
   return res.status(200).json('Song record deleted successfully.');
 });
 
-module.exports = songRouter;
+export default songRouter;

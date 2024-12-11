@@ -1,7 +1,8 @@
 /** Song Schema */
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import Albums from './album.js';
+
 const Schema = mongoose.Schema;
-const Albums = require('./album');
 
 const songSchema = new Schema({
   number: { type: Number, required: true },
@@ -30,4 +31,4 @@ songSchema.post('save', (doc) => {
     });
 });
 
-module.exports = mongoose.model('Songs', songSchema);
+export default mongoose.model('Songs', songSchema);

@@ -1,6 +1,7 @@
 {
   "name": "swifting-eras",
   "version": "1.0.0",
+  "type": "module",
   "description": "A solo project made by Sabrina Ira",
   "main": "frontend/src/index.js",
   "scripts": {

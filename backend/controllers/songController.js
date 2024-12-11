@@ -1,7 +1,6 @@
 /** Song data handling logic via mongoose*/
 
-const Songs = require('../models/song');
-const Albums = require('../models/album'); // for referencing albumId
+import Songs from '../models/song.js';
 
 /** Helper Error Function */
 function createError(log, status = 500, message) {
@@ -134,4 +133,4 @@ SongController.deleteSong = (req, res, next) => {
     });
 };
 
-module.exports = SongController;
+export default SongController;

@@ -1,6 +1,6 @@
 /** Album data handling logic via mongoose */
 
-const Albums = require('../models/album');
+import Albums from '../models/album.js';
 
 // created a helper error function
 function createError(log, status = 500, message) {
@@ -98,4 +98,4 @@ AlbumController.deleteAlbum = (req, res, next) => {
     });
 };
 
-module.exports = AlbumController;
+export default AlbumController;

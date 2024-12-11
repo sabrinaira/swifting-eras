@@ -1,17 +1,18 @@
 /** This file is the main router of the application responses to client requests*/
 
 // import dependencies
-require('dotenv').config({ path: './.env' });
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
+import dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
+import express from 'express';
+import path from 'path';
+import mongoose from 'mongoose';
+
+//import routers & controllers
+import albumRoutes from './routes/albumRoutes.js';
+import songRoutes from './routes/songRoutes.js';
 
 const app = express();
 const PORT = 3000;
-
-//import routers & controllers
-const albumRoutes = require('./routes/albumRoutes');
-const songRoutes = require('./routes/songRoutes');
 
 // initialize middleware for handling JSON and request parsing
 app.use(express.json());

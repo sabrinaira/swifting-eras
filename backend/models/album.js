@@ -1,6 +1,6 @@
 /** Album Schema */
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const albumSchema = new Schema({
@@ -10,4 +10,4 @@ const albumSchema = new Schema({
   songs: [{ type: Schema.Types.ObjectId, ref: 'Songs' }],
 });
 
-module.exports = mongoose.model('Albums', albumSchema);
+export default mongoose.model('Albums', albumSchema);

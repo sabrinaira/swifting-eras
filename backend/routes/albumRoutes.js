@@ -1,7 +1,7 @@
 /** Handle album routing logic */
 
-const express = require('express');
-const AlbumController = require('../controllers/albumController');
+import express from 'express';
+import AlbumController from '../controllers/albumController.js';
 
 // set up router
 const albumRouter = express.Router();
@@ -26,4 +26,4 @@ albumRouter.delete('/:albumName', AlbumController.deleteAlbum, (req, res) => {
   return res.status(200).json('Album deleted successfully.');
 });
 
-module.exports = albumRouter;
+export default albumRouter;
