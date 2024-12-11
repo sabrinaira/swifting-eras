@@ -1,6 +1,7 @@
 /** Song data handling logic via mongoose*/
 
 import Songs from '../models/song.js';
+import Album from '../models/album.js';
 
 /** Helper Error Function */
 function createError(log, status = 500, message) {
@@ -49,7 +50,7 @@ SongController.getSong = (req, res, next) => {
     })
     .catch((err) => {
       const error = createError({
-        log: `Error encountered - cannot find ${songName}: ${err}`,
+        log: `Error encountered - cannot find song: ${err}`,
         message: { err: 'Cannot find song in database' },
       });
       return next(error);
@@ -61,17 +62,30 @@ SongController.getSongsByAlbum = (req, res, next) => {
   const { albumId } = req.params;
 
   Songs.find({ albumId: albumId })
+    .populate('albumId', 'albumTitle')
     .then((songs) => {
       if (!songs || songs.length === 0) {
-        const error = new Error('No songs found for this album');
-        error.status = 404;
+        const error = createError({
+          log: `Error: Cannot find songs associated with album ID`,
+          message: { err: 'Unable find song records.' },
+        });
         return next(error);
       }
 
-      res.status(200).json({
-        message: 'Songs found successfully',
-        songs: songs,
-      });
+      // retirieving the album title from reference
+      const validSongWithAlbum = songs.find((song) => song.albumId);
+      let albumTitle = 'Unknown Album';
+      if (validSongWithAlbum) {
+        albumTitle = validSongWithAlbum.albumId.albumTitle;
+        console.log('Songs are associated with this album:', albumTitle); // Use this albumTitle
+        res.status(200).json({
+          message: 'Songs found successfully',
+          album: albumTitle,
+          songs: songs,
+        });
+      } else {
+        console.log('No valid album found for these songs.');
+      }
     })
     .catch((err) => {
       const error = createError({

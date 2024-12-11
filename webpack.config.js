@@ -1,10 +1,16 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
 
-/*We are basically telling webpack to take index.js from entry. Then check for all file extensions in resolve.
+// to allow __dirname
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+/*We are basically telling webpack to take index.jsx from entry. Then check for all file extensions in resolve.
 After that apply all the rules in module.rules and produce the output and place it in main.js in the public folder.*/
 
-module.exports = {
+export default {
   /** "mode"
    * the environment - development, production, none. tells webpack
    * to use its built-in optimizations accordingly. default is production
@@ -48,7 +54,7 @@ module.exports = {
      * "only" is used if enable Hot Module Replacement without page
      * refresh as a fallback in case of build failures
      */
-    hot: true,
+    hot: false,
     /** "liveReload"
      * disable live reload on the browser. "hot" must be set to false for this to work
      */
@@ -64,8 +70,7 @@ module.exports = {
   },
   module: {
     /** "rules"
-     * This says - "Hey webpack compiler, when you come across a path that resolves to a '.js or .jsx'
-     * file inside of a require()/import statement, use the babel-loader to transform it before you
+     * This says - "Hey webpack compiler, when you come across a path that resolves to a '.js or .jsx' file inside of a require()/import statement, use the babel-loader to transform it before you
      * add it to the bundle. And in this process, kindly make sure to exclude node_modules folder from
      * being searched"
      */
