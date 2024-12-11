@@ -19,10 +19,6 @@ SongController.addSong = (req, res, next) => {
     .then((song) => {
       res.locals.newSong = song;
       console.log(`Song Added: ${res.locals.newSong}`);
-
-      /** Retrieve the albumId to find the corresponding Album, then update the songs array of Album model */
-      Songs.post();
-
       return next();
     })
     .catch((err) => {
@@ -35,9 +31,10 @@ SongController.addSong = (req, res, next) => {
 };
 
 SongController.getSong = (req, res, next) => {
-  const { songName } = req.params;
+  const { id } = req.params;
+  console.log(req.params);
 
-  Songs.findOne({ songTitle: songName })
+  Songs.findOne({ _id: id })
     .then((song) => {
       if (!song) {
         const error = createError({
@@ -55,6 +52,32 @@ SongController.getSong = (req, res, next) => {
       const error = createError({
         log: `Error encountered - cannot find ${songName}: ${err}`,
         message: { err: 'Cannot find song in database' },
+      });
+      return next(error);
+    });
+};
+
+// finding an array of songs by albumId
+SongController.getSongsByAlbum = (req, res, next) => {
+  const { albumId } = req.params;
+
+  Songs.find({ albumId: albumId })
+    .then((songs) => {
+      if (!songs || songs.length === 0) {
+        const error = new Error('No songs found for this album');
+        error.status = 404;
+        return next(error);
+      }
+
+      res.status(200).json({
+        message: 'Songs found successfully',
+        songs: songs,
+      });
+    })
+    .catch((err) => {
+      const error = createError({
+        log: `Error in retrieving songs: ${err}`,
+        message: { err: 'Failed to retrieve songs.' },
       });
       return next(error);
     });
@@ -85,10 +108,19 @@ SongController.updateSong = (req, res, next) => {
 };
 
 SongController.deleteSong = (req, res, next) => {
-  const { songName } = req.params;
+  const { id } = req.params;
+  console.log(req.params);
 
-  Songs.findOneAndDelete({ songTitle: songName })
+  Songs.findOneAndDelete({ _id: id })
     .then((song) => {
+      if (song === null) {
+        const error = createError({
+          log: `Cannot find song.`,
+          message: { err: 'Unable to find song query in database.' },
+        });
+        return next(error);
+      }
+
       res.locals.deletedSong = song;
       console.log(`Song record deleted: ${res.locals.deletedSong}`);
       return next();

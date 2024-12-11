@@ -1,7 +1,7 @@
 /** Song Schema */
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Albums = require('./album');
 
 const songSchema = new Schema({
   number: { type: Number, required: true },
@@ -11,6 +11,23 @@ const songSchema = new Schema({
   lyrics: { type: String, required: true },
   albumId: { type: Schema.Types.ObjectId, ref: 'Albums', required: true },
   desc: { type: String, required: false }, // if the song is from the vault
+});
+
+/** Retrieve the albumId to find the corresponding Album, then update the songs array of Album model */
+songSchema.post('save', (doc) => {
+  Albums.findByIdAndUpdate(
+    doc.albumId,
+    { $push: { songs: doc._id } }, // appending the song's _id into the album's songs array
+    { new: true }
+  )
+    .then((album) => {
+      console.log(
+        `Album: ${album.albumTitle} updated with Song: ${doc.songTitle} `
+      );
+    })
+    .catch((err) => {
+      console.error(`Failed to update album: ${err}`);
+    });
 });
 
 module.exports = mongoose.model('Songs', songSchema);
