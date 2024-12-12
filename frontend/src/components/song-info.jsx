@@ -18,10 +18,9 @@ const SongInfo = () => {
 
   return (
     <div>
-      <h3>
-        {song.number} - {song.songTitle}
-      </h3>
-      <h5>{song.albumId.albumTitle}</h5>
+      <h5>{song.number}</h5>
+      <h3>{song.songTitle}</h3>
+      <h4>{song.albumId.albumTitle}</h4>
       <p>Duration: {song.duration}</p>
 
       <h4>Lyrics</h4>
