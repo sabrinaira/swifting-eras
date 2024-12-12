@@ -50,7 +50,7 @@ app.use('*', (req, res) => {
 app.use((err, req, res, next) => {
   /** default error object */
   const defaultErr = {
-    log: 'Global error encountered unknown middleware error.',
+    log: 'Global error encountered: unknown middleware error.',
     status: 500,
     message: { err: 'An error occured.' },
   };

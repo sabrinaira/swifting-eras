@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const AlbumInfo = () => {
   const { id } = useParams();
@@ -25,7 +25,9 @@ const AlbumInfo = () => {
       <h4>Song List</h4>
       <ul>
         {album.songs.map((song) => (
-          <li key={song._id}>{song.songTitle}</li>
+          <li key={song._id}>
+            <Link to={`/songs/${song._id}`}>{song.songTitle}</Link>
+            </li>
         ))}
       </ul>
     </div>

@@ -3,6 +3,7 @@ import { Router, Route, Routes, Link } from 'react-router-dom';
 import Albums from '../src/components/albums';
 import AlbumInfo from './components/album-info';
 import Songs from '../src/components/songs';
+import SongInfo from './components/song-info';
 
 const App = () => {
   const [view, setView] = useState('home');
@@ -46,6 +47,7 @@ const App = () => {
 
         {/* Information Route */}
         <Route path='/albums/:id' element={<AlbumInfo />} />
+        <Route path='/songs/:id' element={<SongInfo />} />
       </Routes>
     </div>
   );

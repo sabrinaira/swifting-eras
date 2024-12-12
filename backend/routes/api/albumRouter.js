@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
     .populate('songs', 'songTitle')
     .then((album) => {
       if (!album) {
-        res.status(404).json({ error: 'Album not found' });
+        return res.status(404).json({ error: 'Album not found' });
       }
 
       res.json(album);
