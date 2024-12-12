@@ -5,12 +5,16 @@ import SongController from '../controllers/songController.js';
 
 const songRouter = express.Router();
 
-songRouter.post('/', SongController.addSong, (req, res) => {
-  return res.status(200).send(`Song added successfully: ${res.locals.newSong}`);
+songRouter.get('/', SongController.allSongs, (req, res) => {
+  return res.status(200).send(res.locals.allSongs);
 });
 
 songRouter.get('/:id', SongController.getSong, (req, res) => {
   return res.status(200).send(`Song query found: ${res.locals.foundSong}`);
+});
+
+songRouter.post('/', SongController.addSong, (req, res) => {
+  return res.status(200).send(`Song added successfully: ${res.locals.newSong}`);
 });
 
 songRouter.get('/album/:albumId', SongController.getSongsByAlbum);

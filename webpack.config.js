@@ -16,9 +16,6 @@ export default {
    * to use its built-in optimizations accordingly. default is production
    */
   mode: 'development',
-  /** "entry"
-   * the entry point
-   */
   entry: './frontend/src/index.jsx',
   output: {
     /** "path"
@@ -36,15 +33,11 @@ export default {
    */
   target: 'web',
   devServer: {
-    /** "port"
-     * port of dev server
-     */
-    port: '9500',
+    port: '8080',
     /** "static"
      * This property tells Webpack what static file it should serve
      */
     static: path.resolve(__dirname, 'frontend/public'),
-    // static: ['./frontend/public'],
     /** "open"
      * opens the browser after server is successfully started
      */

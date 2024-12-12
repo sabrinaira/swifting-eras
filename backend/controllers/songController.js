@@ -1,7 +1,6 @@
 /** Song data handling logic via mongoose*/
 
 import Songs from '../models/song.js';
-import Album from '../models/album.js';
 
 /** Helper Error Function */
 function createError(log, status = 500, message) {
@@ -10,6 +9,23 @@ function createError(log, status = 500, message) {
 
 const SongController = {};
 
+/** Get All Songs */
+SongController.allSongs = (req, res, next) => {
+  Songs.find()
+    .then((songs) => {
+      res.locals.allSongs = songs;
+      return next();
+    })
+    .catch((err) => {
+      const error = createError({
+        log: `Error occurred retrieving all song records - ${err}`,
+        message: { err: 'Unable to load all Songs.' },
+      });
+      return next(error);
+    });
+};
+
+/** Add Song */
 SongController.addSong = (req, res, next) => {
   const { number, songTitle, duration, artist, lyrics, albumId, desc } =
     req.body;
@@ -30,6 +46,7 @@ SongController.addSong = (req, res, next) => {
     });
 };
 
+/** Get Specific Song */
 SongController.getSong = (req, res, next) => {
   const { id } = req.params;
   console.log(req.params);
@@ -57,7 +74,7 @@ SongController.getSong = (req, res, next) => {
     });
 };
 
-// finding an array of songs by albumId
+/** finding an array of songs by albumId */
 SongController.getSongsByAlbum = (req, res, next) => {
   const { albumId } = req.params;
 
@@ -96,6 +113,7 @@ SongController.getSongsByAlbum = (req, res, next) => {
     });
 };
 
+/** Update Song */
 SongController.updateSong = (req, res, next) => {
   const { songName } = req.params;
   const { number, songTitle, duration, artist, lyrics, albumId, desc } =
@@ -120,6 +138,7 @@ SongController.updateSong = (req, res, next) => {
     });
 };
 
+/** Delete Song */
 SongController.deleteSong = (req, res, next) => {
   const { id } = req.params;
   console.log(req.params);

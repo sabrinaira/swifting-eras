@@ -6,6 +6,7 @@ dotenv.config({ path: './.env' });
 import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 //import routers & controllers
 import albumRoutes from './routes/albumRoutes.js';

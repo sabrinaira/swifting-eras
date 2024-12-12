@@ -9,6 +9,23 @@ function createError(log, status = 500, message) {
 
 const AlbumController = {};
 
+/** Get All Albums */
+AlbumController.allAlbums = (req, res, next) => {
+  Albums.find()
+    .then((albums) => {
+      res.locals.allAlbums = albums;
+      return next();
+    })
+    .catch((err) => {
+      const error = createError({
+        log: `Error occurred: ${err}`,
+        message: { err: "Couldn't load all albums" },
+      });
+      return next(error);
+    });
+};
+
+/** Add Album */
 AlbumController.addAlbum = (req, res, next) => {
   // object deconstruction to specify the properties needed
   const { albumTitle, year, numberOfSongs, songs } = req.body;
@@ -30,6 +47,7 @@ AlbumController.addAlbum = (req, res, next) => {
     });
 };
 
+/** Get Album */
 AlbumController.getAlbum = (req, res, next) => {
   const { albumName } = req.params;
   console.log(req.params);
@@ -57,6 +75,7 @@ AlbumController.getAlbum = (req, res, next) => {
     });
 };
 
+/** Update Album */
 AlbumController.updateAlbum = (req, res, next) => {
   const { albumName } = req.params;
   const { albumTitle, year, numberOfSongs, songs } = req.body;
@@ -80,6 +99,7 @@ AlbumController.updateAlbum = (req, res, next) => {
     });
 };
 
+/** Delete Album */
 AlbumController.deleteAlbum = (req, res, next) => {
   const { albumName } = req.params;
   console.log(req.params);
