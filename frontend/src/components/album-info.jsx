@@ -14,6 +14,8 @@ const AlbumInfo = () => {
 
   if (!album) {
     return <p>Coming Soon!</p>;
+  } else if (!album.songs) {
+    return <p>Coming Soon!</p>;
   }
 
   return (
@@ -23,13 +25,18 @@ const AlbumInfo = () => {
       <p>Number of Songs: {album.numberOfSongs}</p>
 
       <h3>Song List</h3>
-      <ul>
-        {album.songs.map((song) => (
-          <li key={song._id}>
-            <Link to={`/songs/${song._id}`}>{song.songTitle}</Link>
+      {/* checking if the song list is present */}
+      {album.songs && album.songs.length > 0 ? (
+        <ul>
+          {album.songs.map((song) => (
+            <li key={song._id}>
+              <Link to={`/songs/${song._id}`}>{song.songTitle}</Link>
             </li>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <p> Coming Soon! </p>
+      )}
     </div>
   );
 };
