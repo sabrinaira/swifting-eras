@@ -12,7 +12,7 @@ const Albums = () => {
   }, []);
 
   return (
-    <div>
+    <div className='album-list'>
       <h2>Albums</h2>
       <ul>
         {albums.map((album) => (

@@ -14,7 +14,7 @@ const Songs = () => {
   }, []);
 
   return (
-    <div>
+    <div className='song-list'>
       <h2>Songs</h2>
       <ul>
         {songs.map((song) => (

@@ -17,12 +17,12 @@ const AlbumInfo = () => {
   }
 
   return (
-    <div>
-      <h3>{album.albumTitle}</h3>
+    <div className='album'>
+      <h2>{album.albumTitle}</h2>
       <p>Year: {album.year}</p>
       <p>Number of Songs: {album.numberOfSongs}</p>
 
-      <h4>Song List</h4>
+      <h3>Song List</h3>
       <ul>
         {album.songs.map((song) => (
           <li key={song._id}>

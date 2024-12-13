@@ -16,19 +16,19 @@ const SongInfo = () => {
     return <p>Loading...</p>;
   }
 
-  // breaking
+  // aligning the lyrics in stanza form from JSON format
   const lyrics = song.lyrics.split('\n').map((stanza, index) => (
     <p key={index}>{stanza}</p>
   ));
 
   return (
-    <div>
+    <div className='song'>
       <h5>{song.number}</h5>
-      <h3>{song.songTitle}</h3>
       <h4>{song.albumId.albumTitle}</h4>
-      <p>Duration: {song.duration}</p>
+      <h2>{song.songTitle}</h2>
+      {/* <p>Duration: {song.duration}</p> */}
 
-      <h4>Lyrics</h4>
+      {/* <h4>Lyrics</h4> */}
       <div className='lyrics'>{lyrics}</div>
     </div>
   );

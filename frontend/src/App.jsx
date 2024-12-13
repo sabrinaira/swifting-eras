@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Router, Route, Routes, Link } from 'react-router-dom';
+import About from './components/about';
 import Albums from '../src/components/albums';
 import AlbumInfo from './components/album-info';
 import Songs from '../src/components/songs';
@@ -36,16 +37,10 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route
-          path='/'
-          element={<h4>Welcome! Enjoy your stay here!</h4>}
-        />
+        <Route path='/' element={<p className='home'>Welcome! Enjoy your stay here!</p>} />
         <Route path='/albums' element={<Albums />} />
         <Route path='/songs' element={<Songs />} />
-        <Route
-          path='/about'
-          element={<p>This is a solo project developed by Sabrina Ira</p>}
-        />
+        <Route path='/about' element={<About />} />
 
         {/* Information Route */}
         <Route path='/albums/:id' element={<AlbumInfo />} />
