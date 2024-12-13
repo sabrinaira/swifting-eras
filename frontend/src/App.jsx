@@ -4,6 +4,7 @@ import Albums from '../src/components/albums';
 import AlbumInfo from './components/album-info';
 import Songs from '../src/components/songs';
 import SongInfo from './components/song-info';
+import './styles/style.css';
 
 const App = () => {
   const [view, setView] = useState('home');
@@ -24,10 +25,11 @@ const App = () => {
     // </div>
 
     <div>
-      <h1>Swifting Eras</h1>
-      <p>An album and lyrical archive!</p>
+      <h1 className='title'>Swifting Eras</h1>
+      <p className='sub-title'>An album and lyrical archive!</p>
 
-      <nav>
+      <nav className='nav'>
+        <Link to='/'>Home</Link>
         <Link to='/albums'>Albums</Link>
         <Link to='/songs'>Songs</Link>
         <Link to='/about'>About</Link>
@@ -36,7 +38,7 @@ const App = () => {
       <Routes>
         <Route
           path='/'
-          element={<p>Welcome to the Swifting Eras archive...</p>}
+          element={<h4>Welcome! Enjoy your stay here!</h4>}
         />
         <Route path='/albums' element={<Albums />} />
         <Route path='/songs' element={<Songs />} />

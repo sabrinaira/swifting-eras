@@ -16,6 +16,11 @@ const SongInfo = () => {
     return <p>Loading...</p>;
   }
 
+  // breaking
+  const lyrics = song.lyrics.split('\n').map((stanza, index) => (
+    <p key={index}>{stanza}</p>
+  ));
+
   return (
     <div>
       <h5>{song.number}</h5>
@@ -24,7 +29,7 @@ const SongInfo = () => {
       <p>Duration: {song.duration}</p>
 
       <h4>Lyrics</h4>
-      <p>{song.lyrics}</p>
+      <div className='lyrics'>{lyrics}</div>
     </div>
   );
 };
