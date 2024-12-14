@@ -37,7 +37,7 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route path='/' element={<p className='home'>Welcome! Enjoy your stay here!</p>} />
+        <Route path='/' element={<p className='home'>It's me, hi, I'm the problem, it's me.</p>} />
         <Route path='/albums' element={<Albums />} />
         <Route path='/songs' element={<Songs />} />
         <Route path='/about' element={<About />} />
