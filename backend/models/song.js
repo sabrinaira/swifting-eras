@@ -6,10 +6,11 @@ const Schema = mongoose.Schema;
 
 const songSchema = new Schema({
   number: { type: Number, required: true },
-  songTitle: { type: String, required: true },
-  duration: { type: String, required: true },
-  artist: { type: String, required: true },
-  lyrics: { type: String, required: true },
+  title: { type: String, required: true },
+  duration: { type: String, required: false },
+  artist: { type: String, required: false },
+  songwriter: { type: String, required: false },
+  lyrics: { type: String, required: false },
   albumId: { type: Schema.Types.ObjectId, ref: 'Albums', required: true },
   desc: { type: String, required: false }, // if the song is from the vault
 });

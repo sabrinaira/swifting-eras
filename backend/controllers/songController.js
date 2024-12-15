@@ -94,7 +94,10 @@ SongController.getSongsByAlbum = (req, res, next) => {
       let albumTitle = 'Unknown Album';
       if (validSongWithAlbum) {
         albumTitle = validSongWithAlbum.albumId.albumTitle;
-        console.log('Songs are associated with this album:', albumTitle); // Use this albumTitle
+        console.log(
+          'Song records successfully loaded from this album:',
+          albumTitle
+        ); // Use this albumTitle
         res.status(200).json({
           message: 'Songs found successfully',
           album: albumTitle,
@@ -141,7 +144,7 @@ SongController.updateSong = (req, res, next) => {
 /** Delete Song */
 SongController.deleteSong = (req, res, next) => {
   const { id } = req.params;
-  console.log(req.params);
+  // console.log(req.params);
 
   Songs.findOneAndDelete({ _id: id })
     .then((song) => {
@@ -154,7 +157,7 @@ SongController.deleteSong = (req, res, next) => {
       }
 
       res.locals.deletedSong = song;
-      console.log(`Song record deleted: ${res.locals.deletedSong}`);
+      console.log(`Song record deleted: ${res.locals.deletedSong.songTitle}`);
       return next();
     })
     .catch((err) => {

@@ -10,7 +10,7 @@ albumRouter.get('/', AlbumController.allAlbums, (req, res) => {
   return res.status(200).send(res.locals.allAlbums);
 });
 
-albumRouter.get('/:albumName', AlbumController.getAlbum, (req, res) => {
+albumRouter.get('/:id', AlbumController.getAlbum, (req, res) => {
   return res.status(200).send(`TS Album found: ${res.locals.foundAlbum}`);
 });
 
@@ -20,12 +20,14 @@ albumRouter.post('/', AlbumController.addAlbum, (req, res) => {
     .send(`TS Album added successfully: ${res.locals.newAlbum}`);
 });
 
-albumRouter.patch('/:albumName', AlbumController.updateAlbum, (req, res) => {
+albumRouter.patch('/:id', AlbumController.updateAlbum, (req, res) => {
   return res.status(200).send(`TS Album updated: ${res.locals.updateAlbum}`);
 });
 
-albumRouter.delete('/:albumName', AlbumController.deleteAlbum, (req, res) => {
-  return res.status(200).json('Album deleted successfully.');
+albumRouter.delete('/:id', AlbumController.deleteAlbum, (req, res) => {
+  return res
+    .status(200)
+    .json(`Album deleted successfully: ${res.locals.deletedAlbum.albumTitle}`);
 });
 
 export default albumRouter;

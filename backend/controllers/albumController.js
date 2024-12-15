@@ -49,15 +49,15 @@ AlbumController.addAlbum = (req, res, next) => {
 
 /** Get Album */
 AlbumController.getAlbum = (req, res, next) => {
-  const { albumName } = req.params;
+  const { id } = req.params;
   console.log(req.params);
   // use Albums.populate('Songs') in this method to retrieve the data reference from another document
-  Albums.findOne({ albumTitle: albumName })
+  Albums.findOne({ _id: id })
     .then((album) => {
       // if the album does not exist
       if (!album) {
         const error = createError({
-          log: `Cannot find the album name ${albumName}`,
+          log: `Cannot find the album assocaited with album ID: ${id}`,
           message: { err: 'Cannot find album in database' },
         });
         return next(error);
@@ -68,7 +68,7 @@ AlbumController.getAlbum = (req, res, next) => {
     })
     .catch((err) => {
       const error = createError({
-        log: `Error encountered - cannot find ${albumName}: ${err}`,
+        log: `Error encountered - cannot find album: ${err}`,
         message: { err: 'Cannot find album in database' },
       });
       return next(error);
@@ -77,11 +77,11 @@ AlbumController.getAlbum = (req, res, next) => {
 
 /** Update Album */
 AlbumController.updateAlbum = (req, res, next) => {
-  const { albumName } = req.params;
+  const { id } = req.params;
   const { albumTitle, year, numberOfSongs, songs } = req.body;
 
   Albums.findOneAndUpdate(
-    { albumTitle: albumName },
+    { _id: id },
     { albumTitle, year, numberOfSongs, songs },
     { new: true }
   )
@@ -101,18 +101,18 @@ AlbumController.updateAlbum = (req, res, next) => {
 
 /** Delete Album */
 AlbumController.deleteAlbum = (req, res, next) => {
-  const { albumName } = req.params;
-  console.log(req.params);
-  Albums.findOneAndDelete({ albumTitle: albumName })
+  const { id } = req.params;
+  // console.log(req.params);
+  Albums.findOneAndDelete({ _id: id })
     .then((album) => {
       res.locals.deletedAlbum = album;
-      console.log(`Album deleted successfully: ${res.locals.deletedAlbum}`);
+      console.log(`Album deleted successfully: ${res.locals.deletedAlbum.albumTitle}`);
       return next();
     })
     .catch((err) => {
       const error = createError({
         log: `Error encountered - cannot delete album: ${err}`,
-        message: { err: `Failed to delete ${albumName} album` },
+        message: { err: `Failed to delete album record` },
       });
       return next(error);
     });
