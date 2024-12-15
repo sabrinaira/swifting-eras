@@ -1,8 +1,10 @@
 # Swifting Eras
 
+### IMPORTANT NOTE: This app is still a work in progress.
+
 > This is my first solo project—a simple full-stack app built using the technologies I’ve learned during my web development program. I’m excited to continue enhancing and expanding this app as I grow in my development journey. - Sabrina I.
 
-> Last Updated: December 14, 2024
+> Last Updated: December 15, 2024
 
 
 #### Key Features:
