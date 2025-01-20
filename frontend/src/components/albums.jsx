@@ -17,7 +17,7 @@ const Albums = () => {
       <ul>
         {albums.map((album) => (
           <li key={album._id}>
-            <Link to={`/albums/${album._id}`}>{album.albumTitle}</Link>
+            <Link to={`/albums/${album._id}`}>{album.title}</Link>
           </li>
         ))}
       </ul>

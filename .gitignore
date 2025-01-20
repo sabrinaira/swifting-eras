@@ -157,7 +157,8 @@ Icon?
 # macOS resource forks
 __MACOSX
 
-#personal
+#Others
 PROGRESS.md
 frontend/public/main.js.LICENSE.txt
 /frontend/public/main.js
+package-lock.json
