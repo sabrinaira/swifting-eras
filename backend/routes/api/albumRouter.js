@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
   console.log('Recieved request for Album ID:', id);
 
   Albums.findById(id)
-    .populate('songs', 'songTitle')
+    .populate('songs', 'title')
     .then((album) => {
       if (!album) {
         return res.status(404).json({ error: 'Album not found' });

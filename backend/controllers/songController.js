@@ -27,11 +27,11 @@ SongController.allSongs = (req, res, next) => {
 
 /** Add Song */
 SongController.addSong = (req, res, next) => {
-  const { number, songTitle, duration, artist, lyrics, albumId, desc } =
+  const { number, title, duration, artist, songwriters, lyrics, albumId, tags } =
     req.body;
   // console.log('Request Body:', req.body);
 
-  Songs.create({ number, songTitle, duration, artist, lyrics, albumId, desc })
+  Songs.create({ number, title, duration, artist, songwriters, lyrics, albumId, tags })
     .then((song) => {
       res.locals.newSong = song;
       console.log(`Song Added: ${res.locals.newSong}`);
@@ -119,12 +119,12 @@ SongController.getSongsByAlbum = (req, res, next) => {
 /** Update Song */
 SongController.updateSong = (req, res, next) => {
   const { songName } = req.params;
-  const { number, songTitle, duration, artist, lyrics, albumId, desc } =
+  const { number, title, duration, artist, songwriters, lyrics, albumId, tags } =
     req.body;
 
   Songs.findOneAndUpdate(
-    { songTitle: songName },
-    { number, songTitle, duration, artist, lyrics, albumId, desc },
+    { title: songName },
+    { number, title, duration, artist, songwriters, lyrics, albumId, tags },
     { new: true }
   )
     .then((song) => {
@@ -157,7 +157,7 @@ SongController.deleteSong = (req, res, next) => {
       }
 
       res.locals.deletedSong = song;
-      console.log(`Song record deleted: ${res.locals.deletedSong.songTitle}`);
+      console.log(`Song record deleted: ${res.locals.deletedSong.title}`);
       return next();
     })
     .catch((err) => {

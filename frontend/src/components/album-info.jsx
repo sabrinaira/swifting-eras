@@ -34,7 +34,7 @@ const AlbumInfo = () => {
         <ul>
           {album.songs.map((song) => (
             <li key={song._id}>
-              <Link to={`/songs/${song._id}`}>{song.songTitle}</Link>
+              <Link to={`/songs/${song._id}`}>{song.title}</Link>
             </li>
           ))}
         </ul>

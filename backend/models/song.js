@@ -9,10 +9,10 @@ const songSchema = new Schema({
   title: { type: String, required: true },
   duration: { type: String, required: false },
   artist: { type: String, required: false },
-  songwriter: { type: String, required: false },
+  songwriters: [{ type: String, required: false }],
   lyrics: { type: String, required: false },
   albumId: { type: Schema.Types.ObjectId, ref: 'Albums', required: true },
-  desc: { type: String, required: false }, // if the song is from the vault
+  tags: [{ type: String, required: false }], // if the song is from the vault
 });
 
 /** Retrieve the albumId to find the corresponding Album, then update the songs array of Album model */
@@ -24,7 +24,7 @@ songSchema.post('save', (doc) => {
   )
     .then((album) => {
       console.log(
-        `Album: ${album.albumTitle} updated with Song: ${doc.songTitle} `
+        `Album: ${album.title} updated with Song: ${doc.title} `
       );
     })
     .catch((err) => {
