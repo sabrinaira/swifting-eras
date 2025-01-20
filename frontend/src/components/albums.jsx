@@ -7,7 +7,11 @@ const Albums = () => {
   useEffect(() => {
     fetch('http://localhost:3000/api/albums')
       .then((res) => res.json())
-      .then((data) => setAlbums(data))
+      .then((data) => {
+        // Sort the albums by year (ascending order)
+        const sortedAlbums = data.sort((a, b) => a.year - b.year);
+        setAlbums(sortedAlbums);
+      })
       .catch((error) => console.error('Error fetching albums:', error));
   }, []);
 

@@ -12,17 +12,21 @@ const AlbumInfo = () => {
       .catch((error) => console.error);
   }, [id]);
 
-  if (!album) {
-    return <p>Coming Soon!</p>;
-  } else if (!album.songs) {
-    return <p>Coming Soon!</p>;
-  }
+  if (!album) return <p>Coming Soon!</p>;
+  if (!album.songs) return <p>Coming Soon!</p>;
 
   return (
     <div className='album'>
-      <h2>{album.albumTitle}</h2>
-      <p>Year: {album.year}</p>
-      <p>Number of Songs: {album.numberOfSongs}</p>
+      <h2>{album.title}</h2>
+      <h3>{album.year}</h3>
+      <p><b>Original Release Date:</b> {album.releaseDate}</p>
+
+      {/* Check if the album has a re-recorded release date */}
+      {album.tvReleaseDate && (
+        <p><b>Taylor's Version Release Date:</b> {album.tvReleaseDate}</p>
+      )}
+
+      <p><b>Number of Songs:</b> {album.numberOfSongs}</p>
 
       <h3>Song List</h3>
       {/* checking if the song list is present */}

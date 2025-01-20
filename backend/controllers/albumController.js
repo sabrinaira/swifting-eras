@@ -28,10 +28,10 @@ AlbumController.allAlbums = (req, res, next) => {
 /** Add Album */
 AlbumController.addAlbum = (req, res, next) => {
   // object deconstruction to specify the properties needed
-  const { albumTitle, year, numberOfSongs, songs } = req.body;
+  const { title, releaseDate, tvReleaseDate, year, numberOfSongs, songs } = req.body;
   console.log('Request Body:', req.body);
 
-  Albums.create({ albumTitle, year, numberOfSongs, songs })
+  Albums.create({ title, releaseDate, tvReleaseDate, year, numberOfSongs, songs })
     .then((album) => {
       console.log(album);
       res.locals.newAlbum = album;
@@ -78,11 +78,11 @@ AlbumController.getAlbum = (req, res, next) => {
 /** Update Album */
 AlbumController.updateAlbum = (req, res, next) => {
   const { id } = req.params;
-  const { albumTitle, year, numberOfSongs, songs } = req.body;
+  const { title, releaseDate, tvReleaseDate, year, numberOfSongs, songs } = req.body;
 
   Albums.findOneAndUpdate(
     { _id: id },
-    { albumTitle, year, numberOfSongs, songs },
+    { title, releaseDate, tvReleaseDate, year, numberOfSongs, songs },
     { new: true }
   )
     .then((album) => {
