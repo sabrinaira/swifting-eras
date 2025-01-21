@@ -8,12 +8,6 @@ import path from 'path';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-// // to allow __dirname
-// import { fileURLToPath } from 'url';
-// import { dirname } from 'path';
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
-
 //import routers & controllers
 import albumRoutes from './routes/albumRoutes.js';
 import songRoutes from './routes/songRoutes.js';
@@ -27,14 +21,6 @@ const PORT = 3000;
 app.use(cors());
 // initialize middleware for handling JSON and request parsing
 app.use(express.json());
-
-// // React build folder
-// app.use(express.static(path.join(__dirname, 'dist')));
-
-// // Catch all routes and serve React app
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-// });
 
 /** Connecting to cloud database */
 const MONGO_URI = process.env.MONGO_URI;
@@ -54,6 +40,18 @@ app.use('/songs', songRoutes);
 // frontend API routes
 app.use('/api/albums', albumRouter);
 app.use('/api/songs', songRouter);
+
+/**
+ * Serving the index.html for all unknown routes
+ */
+// Serve static files from the frontend build directory
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+// Fallback to React's index.html for any unrecognized routes (frontend routing)
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+});
 
 /** 404 Handler */
 app.use('*', (req, res) => {

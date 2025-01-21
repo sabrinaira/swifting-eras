@@ -21,7 +21,7 @@ export default {
     /** "path"
      * the folder path of the output file
      */
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'frontend/build'),
     /** "filename"
      * the name of the output file
      */

@@ -4,6 +4,7 @@
   "type": "module",
   "description": "A solo project made by Sabrina Ira",
   "main": "frontend/src/index.js",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
     "build": "Webpack --config webpack.config.js",

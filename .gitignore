@@ -162,3 +162,5 @@ PROGRESS.md
 frontend/public/main.js.LICENSE.txt
 /frontend/public/main.js
 package-lock.json
+build
+frontend/build
