@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const AlbumInfo = () => {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/albums/${id}`)
       .then((res) => res.json())
       .then((data) => setAlbum(data))
-      .catch((error) => console.error);
-  }, [id]);
+      .catch((error) => {
+        console.error(error);
+        navigate('/404');  // Redirect to 404 page
+      });
+  }, [id, navigate]);
 
   if (!album) return <p>Coming Soon!</p>;
   if (!album.songs) return <p>Coming Soon!</p>;

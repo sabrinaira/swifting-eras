@@ -5,6 +5,7 @@ import Albums from '../src/components/albums';
 import AlbumInfo from './components/album-info';
 import Songs from '../src/components/songs';
 import SongInfo from './components/song-info';
+import NotFound from './components/notFound';
 import './styles/style.css';
 
 const App = () => {
@@ -29,6 +30,10 @@ const App = () => {
           {/* Information Route */}
           <Route path='/albums/:id' element={<AlbumInfo />} />
           <Route path='/songs/:id' element={<SongInfo />} />
+
+          {/* 404 Redirect */}
+          <Route path='/404' element={<NotFound />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
   );
