@@ -1,3 +1,5 @@
+.vscode/
+
 # Logs
 logs
 *.log
@@ -140,27 +142,22 @@ dist
 Icon?
 ._*
 
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS resource forks
+__MACOSX
+
+# OS X
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+
 # macOS generated files for attributes
 .Spotlight-V100
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 .fseventsd
-
-# macOS Folder attributes
-*.DS_Store
-._*
-
-# macOS file that might be added to networked volumes
-._*
-
-# macOS resource forks
-__MACOSX
-
-#Others
-PROGRESS.md
-frontend/public/main.js.LICENSE.txt
-/frontend/public/main.js
-package-lock.json
-build
-frontend/build

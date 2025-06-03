@@ -17,16 +17,16 @@ The app serves as both an interactive tool for Taylor Swift fans and a demonstra
 
 ---
 
-#### Technologies Used For This App:
+<!-- #### Technologies Used For This App: -->
 
-- [React](https://react.dev/): For building the user interface.
+<!-- - [React](https://react.dev/): For building the user interface.
 - [React Router](https://reactrouter.com/): For client-side routing and navigation.
 - [Express (Node.js)](https://expressjs.com/): For creating the backend API and handling server-side logic.
 - [MongoDB](https://www.mongodb.com/): The database used to store album and song information.
 - [Mongoose](https://mongoosejs.com/): For defining schemas and interacting with the MongoDB database.
-- [Webpack](https://webpack.js.org/): For bundling JavaScript files and managing assets.
+- [Webpack](https://webpack.js.org/): For bundling JavaScript files and managing assets. -->
 
----
+<!-- --- -->
 
 ### Contact:
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sabrinapira/)
