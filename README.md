@@ -1,10 +1,9 @@
 # Swifting Eras
 
-### IMPORTANT NOTE: This app is still a work in progress.
+> Last Updated: June 02, 2025
 
-> This is my first solo project—a simple full-stack app built using the technologies I’ve learned during my web development program. I’m excited to continue enhancing and expanding this app as I grow in my development journey. - Sabrina I.
+> This was my first solo project based on my spreadsheet passion project that collects one of my favorite music artist's discography. I will no longer be continuing to update this version of this application, but instead rebuild it with a different database that is better suitable for the data structure and design. - Sabrina
 
-> Last Updated: January 20, 2025
 
 
 #### Key Features:
