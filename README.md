@@ -5,7 +5,6 @@
 > This was my first solo project based on my spreadsheet passion project that collects one of my favorite music artist's discography. I will no longer be continuing to update this version of this application, but instead rebuild it with a different database that is better suitable for the data structure and design. - Sabrina
 
 
-
 #### Key Features:
 
 - **Album Browsing**: Explore a collection of Taylor Swift’s albums with details like release year and song count.
@@ -29,6 +28,5 @@ The app serves as both an interactive tool for Taylor Swift fans and a demonstra
 
 ---
 
-### Contact: <div><a href="https://www.linkedin.com/in/sabrinapira/" target="_blank">
-<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-</a></div>
+### Contact:
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sabrinapira/)
